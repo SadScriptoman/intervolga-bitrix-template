@@ -51,7 +51,7 @@ module.exports = {
       test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
       options: {
-        outputPath: `${PATHS.assets}fonts`, 
+        outputPath: `${PATHS.assets}fonts`,
         name: '[name].[ext]'
       }
     }, {
@@ -68,7 +68,7 @@ module.exports = {
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
-          options: { 
+          options: {
             sourceMap: true,
             url: false
           }
@@ -87,7 +87,7 @@ module.exports = {
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
-          options: { 
+          options: {
             sourceMap: true,
             url: false
           }
@@ -100,7 +100,7 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    
+
     new webpack.ProvidePlugin({
       $: 'jquery',
       '$': 'jquery',
@@ -117,15 +117,15 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
       { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
-      { from: `${PATHS.src}/static`, to: 'static' },
+      { from: `${PATHS.src}/${PATHS.assets}static`, to: 'static' },
     ]),
 
     ...PAGES_PUG.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
       inject: false,
-      filename: `./${page.replace(/\.pug/,'.html')}`
+      filename: `./${page.replace(/\.pug/, '.html')}`
     })),
-    
+
     ...PAGES_HTML.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
       inject: false,
